@@ -1,13 +1,11 @@
-﻿using MassTransit;
-using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Order.API.DTOs;
 using Order.API.Models;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Order.API.Controllers
 {
