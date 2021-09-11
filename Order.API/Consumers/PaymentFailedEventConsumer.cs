@@ -1,11 +1,11 @@
-﻿using MassTransit;
-using Microsoft.Extensions.Logging;
-using Order.API.Models;
-using Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MassTransit;
+using Microsoft.Extensions.Logging;
+using Order.API.Models;
+using Shared;
 
 namespace Order.API.Consumers
 {
