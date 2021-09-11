@@ -13,6 +13,7 @@ namespace SagaOrchestrationService.Data
         protected override void Configure(EntityTypeBuilder<OrderStateInstance> entity, ModelBuilder model)
         {
             entity.Property(x => x.BuyerId).HasMaxLength(256);
+            entity.Property(x => x.TotalPrice).HasColumnType("decimal(18,2)");
         }
     }
 }

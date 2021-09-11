@@ -1,40 +1,51 @@
 ﻿using System.Reflection;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using SagaOrchestrationService;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SagaOrchestrationService.Data;
 using SagaOrchestrationService.Models;
 using Shared;
 
-Microsoft.Extensions.Hosting.IHost host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
+namespace SagaOrchestrationService
+{
+    public class Program
     {
-        services.AddMassTransit(cfg =>
+        public static void Main(string[] args)
         {
-            cfg.AddSagaStateMachine<OrderStateMachine, OrderStateInstance>().EntityFrameworkRepository(options =>
-            {
-                options.AddDbContext<DbContext, OrderStateDbContext>((provider, builder) =>
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) =>
                 {
-                    builder.UseSqlServer(hostContext.Configuration.GetConnectionString("SqlConnection"), m =>
+                    services.AddMassTransit(cfg =>
                     {
-                        m.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
+                        cfg.AddSagaStateMachine<OrderStateMachine, OrderStateInstance>().EntityFrameworkRepository(opt =>
+                        {
+                            opt.AddDbContext<DbContext, OrderStateDbContext>((provider, builder) =>
+                            {
+                                builder.UseSqlServer(hostContext.Configuration.GetConnectionString("SqlConnection"), m =>
+                                {
+                                    m.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
+                                });
+                            });
+                        });
+
+                        cfg.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(configure =>
+                        {
+                            configure.Host(hostContext.Configuration.GetConnectionString("RabbitMQ"));
+
+                            configure.ReceiveEndpoint(RabbitMQSettingsConst.OrderSaga, e =>
+                            {
+                                e.ConfigureSaga<OrderStateInstance>(provider);
+                            });
+                        }));
                     });
+                    services.AddMassTransitHostedService();
+                    services.AddHostedService<Worker>();
                 });
-            });
-
-            cfg.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(config =>
-            {
-                config.Host(hostContext.Configuration.GetConnectionString("RabbitMQ"));
-
-                config.ReceiveEndpoint(RabbitMQSettingsConst.OrderSaga, e =>
-                {
-                    e.ConfigureSaga<OrderStateInstance>(provider);
-                });
-            }));
-        });
-
-        services.AddHostedService<Worker>();
-    })
-    .Build();
-
-await host.RunAsync();
+    }
+}
