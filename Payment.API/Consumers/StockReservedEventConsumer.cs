@@ -1,10 +1,10 @@
-﻿using MassTransit;
-using Microsoft.Extensions.Logging;
-using Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MassTransit;
+using Microsoft.Extensions.Logging;
+using Shared;
 
 namespace Payment.API.Consumers
 {
