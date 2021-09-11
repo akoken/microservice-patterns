@@ -32,7 +32,7 @@ namespace Order.API
 
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("SqlCon"));
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
             });
 
             services.AddMassTransitHostedService();
