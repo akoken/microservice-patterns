@@ -36,7 +36,7 @@ namespace Order.API.Controllers
                 CreatedDate = DateTime.Now
             };
 
-            orderCreate.orderItems.ForEach(item =>
+            orderCreate.OrderItems.ForEach(item =>
             {
                 newOrder.Items.Add(new OrderItem() { Price = item.Price, ProductId = item.ProductId, Count = item.Count });
             });
@@ -51,17 +51,17 @@ namespace Order.API.Controllers
                 OrderId = newOrder.Id,
                 Payment = new PaymentMessage
                 {
-                    CardName = orderCreate.payment.CardName,
-                    CardNumber = orderCreate.payment.CardNumber,
-                    Expiration = orderCreate.payment.Expiration,
-                    CVV = orderCreate.payment.CVV,
-                    TotalPrice = orderCreate.orderItems.Sum(x => x.Price * x.Count)
+                    CardName = orderCreate.Payment.CardName,
+                    CardNumber = orderCreate.Payment.CardNumber,
+                    Expiration = orderCreate.Payment.Expiration,
+                    CVV = orderCreate.Payment.CVV,
+                    TotalPrice = orderCreate.OrderItems.Sum(x => x.Price * x.Count)
                 },
             };
 
-            orderCreate.orderItems.ForEach(item =>
+            orderCreate.OrderItems.ForEach(item =>
             {
-                orderCreatedEvent.orderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
+                orderCreatedEvent.OrderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
             });
 
             await _publishEndpoint.Publish(orderCreatedEvent);

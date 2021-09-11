@@ -2,7 +2,7 @@
 {
     public class PaymentCompletedEvent
     {
-        public int orderId { get; set; }
+        public int OrderId { get; set; }
 
         public string BuyerId { get; set; }
     }

@@ -23,7 +23,7 @@ namespace Stock.API.Consumers
 
         public async Task Consume(ConsumeContext<PaymentFailedEvent> context)
         {
-            foreach (var item in context.Message.orderItems)
+            foreach (var item in context.Message.OrderItems)
             {
                 var stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
 
@@ -34,7 +34,7 @@ namespace Stock.API.Consumers
                 }
             }
 
-            _logger.LogInformation($"Stock was released for Order Id ({context.Message.orderId})");
+            _logger.LogInformation($"Stock was released for Order Id ({context.Message.OrderId})");
         }
     }
 }

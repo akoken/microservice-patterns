@@ -29,14 +29,14 @@ namespace Stock.API.Consumers
         {
             var stockResult = new List<bool>();
 
-            foreach (var item in context.Message.orderItems)
+            foreach (var item in context.Message.OrderItems)
             {
                 stockResult.Add(await _context.Stocks.AnyAsync(x => x.ProductId == item.ProductId && x.Count > item.Count));
             }
 
             if (stockResult.All(x => x.Equals(true)))
             {
-                foreach (var item in context.Message.orderItems)
+                foreach (var item in context.Message.OrderItems)
                 {
                     var stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
 
@@ -57,7 +57,7 @@ namespace Stock.API.Consumers
                     Payment = context.Message.Payment,
                     BuyerId = context.Message.BuyerId,
                     OrderId = context.Message.OrderId,
-                    OrderItems = context.Message.orderItems
+                    OrderItems = context.Message.OrderItems
                 };
 
                 await sendEndpoint.Send(stockReservedEvent);
