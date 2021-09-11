@@ -61,7 +61,7 @@ namespace Order.API.Controllers
 
             orderCreate.orderItems.ForEach(item =>
             {
-                orderCreatedEvent.orderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
+                orderCreatedEvent.OrderItems.Add(new OrderItemMessage { Count = item.Count, ProductId = item.ProductId });
             });
 
             await _publishEndpoint.Publish(orderCreatedEvent);
