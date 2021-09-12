@@ -1,15 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Shared.Interfaces;
 
 namespace Shared
 {
-    public class StockReservedEvent
+    public class StockReservedEvent : IStockReservedEvent
     {
-        public int OrderId { get; set; }
+        public StockReservedEvent(Guid correlationId)
+        {
+            CorrelationId = correlationId;
+        }
 
-        public string BuyerId { get; set; }
+        public List<OrderItemMessage> OrderItems { get; set; }
 
-        public PaymentMessage Payment { get; set; }
-
-        public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
+        public Guid CorrelationId { get; }
     }
 }

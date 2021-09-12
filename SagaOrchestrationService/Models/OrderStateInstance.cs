@@ -38,9 +38,9 @@ namespace SagaOrchestrationService.Models
             properties.ToList().ForEach(p =>
             {
                 var value = p.GetValue(this, null);
-                builder.Append($"{p.Name}:{value}");
+                builder.AppendLine($"{p.Name}:{value}");
             });
-            builder.Append("-----------------");
+            builder.AppendLine("-----------------");
             return builder.ToString();
         }
     }
