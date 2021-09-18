@@ -8,6 +8,7 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Shared;
+using Shared.Events;
 using Shared.Interfaces;
 using Stock.API.Models;
 

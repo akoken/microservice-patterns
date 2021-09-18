@@ -4,6 +4,7 @@
 using System;
 using Automatonymous;
 using Shared;
+using Shared.Events;
 using Shared.Interfaces;
 
 namespace SagaOrchestrationService.Models
@@ -11,16 +12,32 @@ namespace SagaOrchestrationService.Models
     public class OrderStateMachine : MassTransitStateMachine<OrderStateInstance>
     {
         public Event<IOrderCreatedRequestEvent> OrderCreatedRequestEvent { get; set; }
+
         public Event<IStockReservedEvent> StockReservedEvent { get; set; }
+
+        public Event<IStockNotReservedEvent> StockNotReservedEvent { get; set; }
+
+        public Event<IPaymentCompletedEvent> PaymentCompletedEvent { get; set; }
 
         public State OrderCreated { get; private set; }
 
         public State StockReserved { get; private set; }
 
+        public State StockNotReserved { get; private set; }
+
+        public State PaymentCompleted { get; set; }
+
         public OrderStateMachine()
         {
             InstanceState(x => x.CurrentState);
+
             Event(() => OrderCreatedRequestEvent, y => y.CorrelateBy<int>(x => x.OrderId, e => e.Message.OrderId).SelectId(context => Guid.NewGuid()));
+
+            Event(() => StockReservedEvent, y => y.CorrelateById(x => x.Message.CorrelationId));
+
+            Event(() => StockNotReservedEvent, y => y.CorrelateById(x => x.Message.CorrelationId));
+
+            Event(() => PaymentCompletedEvent, y => y.CorrelateById(x => x.Message.CorrelationId));
 
             Initially(When(OrderCreatedRequestEvent)
             .Then(context =>
@@ -52,10 +69,21 @@ namespace SagaOrchestrationService.Models
                         CVV = context.Instance.CVV,
                         Expiration = context.Instance.Expiration,
                         TotalPrice = context.Instance.TotalPrice
-                    }
+                    },
+                    BuyerId = context.Instance.BuyerId
                 })
-                .Then(context => { Console.WriteLine($"StockReservedEvent after: {context.Instance}"); })
-                );
+                .Then(context => { Console.WriteLine($"StockReservedEvent after: {context.Instance}"); }),
+               When(StockNotReservedEvent)
+               .TransitionTo(StockNotReserved)
+               .Publish(context => new OrderRequestFailedEvent { OrderId = context.Instance.OrderId, Reason = context.Data.Reason })
+              .Then(context => { Console.WriteLine($"StockNotReservedEvent after: {context.Instance}"); }));
+
+            During(StockReserved,
+                When(PaymentCompletedEvent)
+                .TransitionTo(PaymentCompleted)
+                .Publish(context => new OrderRequestCompletedEvent() { OrderId = context.Instance.OrderId })
+                .Then(context => { Console.WriteLine($"PaymentCompletedEvent after: {context.Instance}"); })
+                .Finalize());
         }
     }
 }

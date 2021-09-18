@@ -4,12 +4,14 @@ using Shared.Interfaces;
 
 namespace Shared
 {
-    public class OrderCreatedEvent : IOrderCreatedEvent
+    public class PaymentFailedEvent : IPaymentFailedEvent
     {
-        public OrderCreatedEvent(Guid correlationId)
+        public PaymentFailedEvent(Guid correlationId)
         {
             CorrelationId = correlationId;
         }
+
+        public string Reason { get; set; }
 
         public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
 

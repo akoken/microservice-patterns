@@ -1,7 +1,7 @@
 ﻿using System;
 using Shared.Interfaces;
 
-namespace Shared
+namespace Shared.Events
 {
     public class StockNotReservedEvent : IStockNotReservedEvent
     {

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Shared.Interfaces;
 
-namespace Shared
+namespace Shared.Events
 {
     public class StockReservedRequestPayment : IStockReservedRequestPayment
     {
@@ -19,5 +19,6 @@ namespace Shared
         public List<OrderItemMessage> OrderItems { get; set; } = new List<OrderItemMessage>();
 
         public Guid CorrelationId { get; }
+        public string BuyerId { get; set; }
     }
 }

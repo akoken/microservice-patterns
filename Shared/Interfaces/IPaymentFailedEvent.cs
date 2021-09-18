@@ -7,12 +7,10 @@ using MassTransit;
 
 namespace Shared.Interfaces
 {
-    public interface IStockReservedRequestPayment : CorrelatedBy<Guid>
+    public interface IPaymentFailedEvent : CorrelatedBy<Guid>
     {
-        PaymentMessage Payment { get; set; }
+        public string Reason { get; set; }
 
-        List<OrderItemMessage> OrderItems { get; set; }
-
-        public string BuyerId { get; set; }
+        public List<OrderItemMessage> OrderItems { get; set; }
     }
 }
