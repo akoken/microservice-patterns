@@ -31,11 +31,11 @@ namespace Stock.API
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("RabbitMQ"));
-                    cfg.ReceiveEndpoint(RabbitMQSettingsConst.StockOrderCreatedEventQueueName, e =>
+                    cfg.ReceiveEndpoint(RabbitMQSettings.StockOrderCreatedEventQueueName, e =>
                     {
                         e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
                     });
-                    cfg.ReceiveEndpoint(RabbitMQSettingsConst.StockRollbackQueueName, e =>
+                    cfg.ReceiveEndpoint(RabbitMQSettings.StockRollbackQueueName, e =>
                     {
                         e.ConfigureConsumer<StockRollbackMessageConsumer>(context);
                     });

@@ -31,11 +31,11 @@ namespace Order.API
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("RabbitMQ"));
-                    cfg.ReceiveEndpoint(RabbitMQSettingsConst.OrderRequestCompletedEventQueueName, x =>
+                    cfg.ReceiveEndpoint(RabbitMQSettings.OrderRequestCompletedEventQueueName, x =>
                     {
                         x.ConfigureConsumer<OrderRequestCompletedEventConsumer>(context);
                     });
-                    cfg.ReceiveEndpoint(RabbitMQSettingsConst.OrderRequestFailedEventQueueName, x =>
+                    cfg.ReceiveEndpoint(RabbitMQSettings.OrderRequestFailedEventQueueName, x =>
                     {
                         x.ConfigureConsumer<OrderRequestFailedEventConsumer>(context);
                     });

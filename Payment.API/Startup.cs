@@ -28,7 +28,7 @@ namespace Payment.API
                 x.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("RabbitMQ"));
-                    cfg.ReceiveEndpoint(RabbitMQSettingsConst.PaymentStockReservedRequestQueueName, e =>
+                    cfg.ReceiveEndpoint(RabbitMQSettings.PaymentStockReservedRequestQueueName, e =>
                     {
                         e.ConfigureConsumer<StockReservedRequestPaymentConsumer>(context);
                     });

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Shared.Interfaces;
 
-namespace Shared
+namespace Shared.Events
 {
     public class PaymentFailedEvent : IPaymentFailedEvent
     {

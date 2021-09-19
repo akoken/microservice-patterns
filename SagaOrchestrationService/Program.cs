@@ -38,7 +38,7 @@ namespace SagaOrchestrationService
                         {
                             configure.Host(hostContext.Configuration.GetConnectionString("RabbitMQ"));
 
-                            configure.ReceiveEndpoint(RabbitMQSettingsConst.OrderSaga, e =>
+                            configure.ReceiveEndpoint(RabbitMQSettings.OrderSaga, e =>
                             {
                                 e.ConfigureSaga<OrderStateInstance>(provider);
                             });

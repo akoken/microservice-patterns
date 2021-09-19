@@ -64,7 +64,7 @@ namespace SagaOrchestrationService.Models
             During(OrderCreated,
                 When(StockReservedEvent)
                 .TransitionTo(StockReserved)
-                .Send(new Uri($"queue:{RabbitMQSettingsConst.PaymentStockReservedRequestQueueName}"), context => new StockReservedRequestPayment(context.Instance.CorrelationId)
+                .Send(new Uri($"queue:{RabbitMQSettings.PaymentStockReservedRequestQueueName}"), context => new StockReservedRequestPayment(context.Instance.CorrelationId)
                 {
                     OrderItems = context.Data.OrderItems,
                     Payment = new PaymentMessage
@@ -91,7 +91,7 @@ namespace SagaOrchestrationService.Models
                 .Finalize(),
                 When(PaymentFailedEvent)
                 .Publish(context => new OrderRequestFailedEvent() { OrderId = context.Instance.OrderId, Reason = context.Data.Reason })
-                .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollbackQueueName}"), context => new StockRollbackMessage { OrderItems = context.Data.OrderItems })
+                .Send(new Uri($"queue:{RabbitMQSettings.StockRollbackQueueName}"), context => new StockRollbackMessage { OrderItems = context.Data.OrderItems })
                 .TransitionTo(PaymentFailed)
                 .Then(context => { Console.WriteLine($"PaymentFailedEvent after: {context.Instance}"); })
                 );
