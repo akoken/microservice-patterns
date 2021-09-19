@@ -4,7 +4,6 @@
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using Shared;
 using Shared.Events;
 using Shared.Interfaces;
 
