@@ -6,6 +6,7 @@ using Automatonymous;
 using Shared;
 using Shared.Events;
 using Shared.Interfaces;
+using Shared.Messages;
 
 namespace SagaOrchestrationService.Models
 {
@@ -19,6 +20,8 @@ namespace SagaOrchestrationService.Models
 
         public Event<IPaymentCompletedEvent> PaymentCompletedEvent { get; set; }
 
+        public Event<IPaymentFailedEvent> PaymentFailedEvent { get; set; }
+
         public State OrderCreated { get; private set; }
 
         public State StockReserved { get; private set; }
@@ -26,6 +29,8 @@ namespace SagaOrchestrationService.Models
         public State StockNotReserved { get; private set; }
 
         public State PaymentCompleted { get; set; }
+
+        public State PaymentFailed { get; set; }
 
         public OrderStateMachine()
         {
@@ -83,7 +88,15 @@ namespace SagaOrchestrationService.Models
                 .TransitionTo(PaymentCompleted)
                 .Publish(context => new OrderRequestCompletedEvent() { OrderId = context.Instance.OrderId })
                 .Then(context => { Console.WriteLine($"PaymentCompletedEvent after: {context.Instance}"); })
-                .Finalize());
+                .Finalize(),
+                When(PaymentFailedEvent)
+                .Publish(context => new OrderRequestFailedEvent() { OrderId = context.Instance.OrderId, Reason = context.Data.Reason })
+                .Send(new Uri($"queue:{RabbitMQSettingsConst.StockRollbackQueueName}"), context => new StockRollbackMessage { OrderItems = context.Data.OrderItems })
+                .TransitionTo(PaymentFailed)
+                .Then(context => { Console.WriteLine($"PaymentFailedEvent after: {context.Instance}"); })
+                );
+
+            SetCompletedWhenFinalized();
         }
     }
 }
