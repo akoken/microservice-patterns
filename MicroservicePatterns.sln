@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{9E6AD050-D3C1-4A58-BABD-9E15446CAC26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "src\OrderService\OrderService.csproj", "{9E6AD050-D3C1-4A58-BABD-9E15446CAC26}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockService", "StockService\StockService.csproj", "{CFFCED1F-6073-448F-8BCC-678A9768FD2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockService", "src\StockService\StockService.csproj", "{CFFCED1F-6073-448F-8BCC-678A9768FD2E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService", "PaymentService\PaymentService.csproj", "{34DC1BE4-235F-407F-B6F7-FF4A80B5AC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService", "src\PaymentService\PaymentService.csproj", "{34DC1BE4-235F-407F-B6F7-FF4A80B5AC78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{1ADDCFE7-3B95-4332-BE94-A519142515C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared.csproj", "{1ADDCFE7-3B95-4332-BE94-A519142515C9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C4E1E25-3A4D-418B-90EB-DA4AE49AF137}"
 	ProjectSection(SolutionItems) = preProject
