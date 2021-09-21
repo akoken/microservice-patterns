@@ -5,10 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Payment.API.Consumers;
+using PaymentService.Consumers;
 using Shared;
 
-namespace Payment.API
+namespace PaymentService
 {
     public class Startup
     {

@@ -6,10 +6,10 @@ using MassTransit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Order.API.Models;
+using OrderService.Models;
 using Shared;
 
-namespace Order.API.Consumers
+namespace OrderService.Consumers
 {
     public class PaymentCompletedEventConsumer : IConsumer<PaymentCompletedEvent>
     {

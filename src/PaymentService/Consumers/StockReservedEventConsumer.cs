@@ -6,7 +6,7 @@ using MassTransit;
 using Microsoft.Extensions.Logging;
 using Shared;
 
-namespace Payment.API.Consumers
+namespace PaymentService.Consumers
 {
     public class StockReservedEventConsumer : IConsumer<StockReservedEvent>
     {

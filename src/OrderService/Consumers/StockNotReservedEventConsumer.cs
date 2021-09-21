@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using Order.API.Models;
+using OrderService.Models;
 using Shared;
 
-namespace Order.API.Consumers
+namespace OrderService.Consumers
 {
     public class StockNotReservedEventConsumer : IConsumer<StockNotReservedEvent>
     {

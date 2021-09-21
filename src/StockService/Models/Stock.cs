@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Stock.API.Models
+namespace StockService.Models
 {
     public class Stock
     {

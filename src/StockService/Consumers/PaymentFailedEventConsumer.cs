@@ -6,9 +6,9 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Shared;
-using Stock.API.Models;
+using StockService.Models;
 
-namespace Stock.API.Consumers
+namespace StockService.Consumers
 {
     public class PaymentFailedEventConsumer : IConsumer<PaymentFailedEvent>
     {

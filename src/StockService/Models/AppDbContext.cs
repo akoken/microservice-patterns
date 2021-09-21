@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Stock.API.Models
+namespace StockService.Models
 {
     public class AppDbContext : DbContext
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Order.API.Models
+namespace OrderService.Models
 {
     public class AppDbContext : DbContext
     {

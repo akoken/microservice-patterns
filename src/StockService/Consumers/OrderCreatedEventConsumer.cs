@@ -6,9 +6,9 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Shared;
-using Stock.API.Models;
+using StockService.Models;
 
-namespace Stock.API.Consumers
+namespace StockService.Consumers
 {
     public class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
     {
@@ -52,7 +52,7 @@ namespace Stock.API.Consumers
 
                 var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{RabbitMQSettingsConst.StockReservedEventQueueName}"));
 
-                StockReservedEvent stockReservedEvent = new StockReservedEvent()
+                var stockReservedEvent = new StockReservedEvent()
                 {
                     Payment = context.Message.Payment,
                     BuyerId = context.Message.BuyerId,
