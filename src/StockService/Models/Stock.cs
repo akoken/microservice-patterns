@@ -1,4 +1,4 @@
-﻿namespace Stock.API.Models
+﻿namespace StockService.Models
 {
     public class Stock
     {

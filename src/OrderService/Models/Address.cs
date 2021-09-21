@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Order.API.Models
+namespace OrderService.Models
 {
     [Owned]
     public class Address

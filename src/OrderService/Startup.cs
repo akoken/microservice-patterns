@@ -6,11 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Order.API.Consumers;
-using Order.API.Models;
+using OrderService.Consumers;
+using OrderService.Models;
 using Shared;
 
-namespace Order.API
+namespace OrderService
 {
     public class Startup
     {

@@ -6,9 +6,9 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Shared.Messages;
-using Stock.API.Models;
+using StockService.Models;
 
-namespace Stock.API.Consumers
+namespace StockService.Consumers
 {
     public class StockRollbackMessageConsumer : IConsumer<IStockRollbackMessage>
     {
@@ -25,7 +25,7 @@ namespace Stock.API.Consumers
         {
             foreach (var item in context.Message.OrderItems)
             {
-                Models.Stock stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
+                Stock stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
 
                 if (stock != null)
                 {

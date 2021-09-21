@@ -10,9 +10,9 @@ using Microsoft.Extensions.Logging;
 using Shared;
 using Shared.Events;
 using Shared.Interfaces;
-using Stock.API.Models;
+using StockService.Models;
 
-namespace Stock.API.Consumers
+namespace StockService.Consumers
 {
     public class OrderCreatedEventConsumer : IConsumer<IOrderCreatedEvent>
     {
@@ -39,7 +39,7 @@ namespace Stock.API.Consumers
             {
                 foreach (OrderItemMessage item in context.Message.OrderItems)
                 {
-                    Models.Stock stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
+                    Stock stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
                     if (stock is not null)
                     {
                         stock.Count -= item.Count;

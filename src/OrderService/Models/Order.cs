@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Order.API.Models
+namespace OrderService.Models
 {
     public class Order
     {

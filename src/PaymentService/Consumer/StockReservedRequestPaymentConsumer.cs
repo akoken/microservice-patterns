@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Shared.Events;
 using Shared.Interfaces;
 
-namespace Payment.API.Consumer
+namespace PaymentService.Consumer
 {
     public class StockReservedRequestPaymentConsumer : IConsumer<IStockReservedRequestPayment>
     {

@@ -7,10 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Shared;
-using Stock.API.Consumers;
-using Stock.API.Models;
+using StockService.Consumers;
+using StockService.Models;
 
-namespace Stock.API
+namespace StockService
 {
     public class Startup
     {

@@ -3,13 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Order.API.DTOs;
-using Order.API.Models;
+using OrderService.DTOs;
+using OrderService.Models;
 using Shared;
 using Shared.Events;
 using Shared.Interfaces;
 
-namespace Order.API.Controllers
+namespace OrderService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

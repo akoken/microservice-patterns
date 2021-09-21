@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Order.API.DTOs
+namespace OrderService.DTOs
 {
     public class OrderCreateDto
     {

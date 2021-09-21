@@ -4,10 +4,10 @@
 using System.Threading.Tasks;
 using MassTransit;
 using Microsoft.Extensions.Logging;
-using Order.API.Models;
+using OrderService.Models;
 using Shared.Interfaces;
 
-namespace Order.API.Consumers
+namespace OrderService.Consumers
 {
     public class OrderRequestFailedEventConsumer : IConsumer<IOrderRequestFailedEvent>
     {

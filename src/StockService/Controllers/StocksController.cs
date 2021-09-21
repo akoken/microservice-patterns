@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Stock.API.Models;
+using StockService.Models;
 
-namespace Stock.API.Controllers
+namespace StockService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
