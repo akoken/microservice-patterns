@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A047E18D-1051-40DB-8F67-B43E490430C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.API", "src\EventSourcing.API\EventSourcing.API.csproj", "{7A06043F-0C06-4294-A1B3-4EDA9730E73D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.Shared", "src\EventSourcing.Shared\EventSourcing.Shared.csproj", "{5256F786-6A03-420D-ADFF-EC5137E6584A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A06043F-0C06-4294-A1B3-4EDA9730E73D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A06043F-0C06-4294-A1B3-4EDA9730E73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A06043F-0C06-4294-A1B3-4EDA9730E73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A06043F-0C06-4294-A1B3-4EDA9730E73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5256F786-6A03-420D-ADFF-EC5137E6584A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5256F786-6A03-420D-ADFF-EC5137E6584A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5256F786-6A03-420D-ADFF-EC5137E6584A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5256F786-6A03-420D-ADFF-EC5137E6584A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7A06043F-0C06-4294-A1B3-4EDA9730E73D} = {A047E18D-1051-40DB-8F67-B43E490430C0}
+		{5256F786-6A03-420D-ADFF-EC5137E6584A} = {A047E18D-1051-40DB-8F67-B43E490430C0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C1BD093-94FF-4CD4-B56D-E58B1C4D0A93}
+	EndGlobalSection
+EndGlobal
