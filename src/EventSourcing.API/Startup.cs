@@ -1,7 +1,10 @@
-﻿using EventSourcing.API.EventStores;
+﻿using EventSourcing.API.Data;
+using EventSourcing.API.EventStores;
 using EventSourcing.API.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +24,10 @@ namespace EventSourcing.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -30,6 +37,7 @@ namespace EventSourcing.API
 
             services.AddEventStore(Configuration);
             services.AddSingleton<ProductStream>();
+            services.AddMediatR(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

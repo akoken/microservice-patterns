@@ -12,8 +12,10 @@ namespace EventSourcing.API.Extensions
     {
         public static void AddEventStore(this IServiceCollection services, IConfiguration configuration)
         {
-            var connection = EventStoreConnection.Create(configuration.GetConnectionString("EventStore"));
+            var connection = EventStoreConnection.Create(connectionString: configuration.GetConnectionString("EventStore"));
+
             connection.ConnectAsync().Wait();
+
             services.AddSingleton(connection);
 
             using var logFactory = LoggerFactory.Create(builder =>
@@ -26,18 +28,13 @@ namespace EventSourcing.API.Extensions
 
             connection.Connected += (sender, args) =>
             {
-                logger.LogInformation("EventStore connection established.");
+                logger.LogInformation("EventStore connection established");
             };
 
             connection.ErrorOccurred += (sender, args) =>
             {
                 logger.LogError(args.Exception.Message);
             };
-        }
-
-        private static void Connection_Connected(object sender, ClientConnectionEventArgs e)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
