@@ -1,4 +1,5 @@
-﻿using EventSourcing.API.Extensions;
+﻿using EventSourcing.API.EventStores;
+using EventSourcing.API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,7 @@ namespace EventSourcing.API
             });
 
             services.AddEventStore(Configuration);
+            services.AddSingleton<ProductStream>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

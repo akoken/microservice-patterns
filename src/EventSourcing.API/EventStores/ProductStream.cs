@@ -27,5 +27,28 @@ namespace EventSourcing.API.EventStores
                 UserId = request.UserId
             });
         }
+
+        public void NameChanged(ChangeProductNameRequest request)
+        {
+            Events.Add(new ProductNameChangedEvent
+            {
+                Id = request.Id,
+                ChangedName = request.Name
+            });
+        }
+
+        public void PriceChanged(ChangeProductPriceRequest request)
+        {
+            Events.Add(new ProductPriceChangedEvent
+            {
+                Id = request.Id,
+                ChangedPrice = request.Price
+            });
+        }
+
+        public void Deleted(Guid id)
+        {
+            Events.Add(new ProductDeletedEvent { Id = id });
+        }
     }
 }
