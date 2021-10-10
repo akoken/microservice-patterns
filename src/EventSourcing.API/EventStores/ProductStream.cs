@@ -11,6 +11,7 @@ namespace EventSourcing.API.EventStores
     public class ProductStream : AbstractStream
     {
         public static string StreamName => "ProductStream";
+        public static string GroupName => "ProductGroup";
 
         public ProductStream(IEventStoreConnection eventStoreConnection) : base(StreamName, eventStoreConnection)
         {
