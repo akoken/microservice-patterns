@@ -37,13 +37,12 @@ namespace EventSourcing.API.BackgroundServices
 
         private async Task EventAppeared(EventStorePersistentSubscriptionBase arg1, ResolvedEvent arg2)
         {
-            _logger.LogInformation("The message is processing...");
             var type = Type.GetType($"{Encoding.UTF8.GetString(arg2.Event.Metadata)}, EventSourcing.Shared");
+            _logger.LogInformation($"The message is processing... => {type.ToString()}");
             var eventData = Encoding.UTF8.GetString(arg2.Event.Data);
             var @event = JsonSerializer.Deserialize(eventData, type);
 
             using var scope = _serviceProvider.CreateScope();
-
             var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
             Product product = null;
