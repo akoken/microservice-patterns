@@ -8,6 +8,7 @@ namespace EventSourcing.API.Models
     public class ChangeProductNameRequest
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
     }
 }

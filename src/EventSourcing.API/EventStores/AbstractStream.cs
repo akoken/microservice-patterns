@@ -31,8 +31,7 @@ namespace EventSourcing.API.EventStores
                 x.GetType().Name,
                 true,
                 Encoding.UTF8.GetBytes(JsonSerializer.Serialize(x, inputType: x.GetType())),
-                Encoding.UTF8.GetBytes(x.GetType().FullName)
-                )).ToList();
+                Encoding.UTF8.GetBytes(x.GetType().FullName))).ToList();
 
             await _eventStoreConnection.AppendToStreamAsync(_streamName, ExpectedVersion.Any, newEvents);
             Events.Clear();

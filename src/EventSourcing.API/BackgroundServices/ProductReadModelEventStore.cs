@@ -55,7 +55,7 @@ namespace EventSourcing.API.BackgroundServices
                         Name = createdEvent.Name,
                         Price = createdEvent.Price,
                         Stock = createdEvent.Stock,
-                        UserId = createdEvent.UserId
+                        UserId = createdEvent.UserId,
                     };
                     context.Products.Add(product);
                     break;
@@ -65,6 +65,7 @@ namespace EventSourcing.API.BackgroundServices
                     {
                         product.Name = nameChangedEvent.ChangedName;
                     }
+
                     break;
                 case ProductPriceChangedEvent priceChangedEvent:
                     product = await context.Products.FindAsync(priceChangedEvent.Id);
@@ -72,6 +73,7 @@ namespace EventSourcing.API.BackgroundServices
                     {
                         product.Price = priceChangedEvent.ChangedPrice;
                     }
+
                     break;
                 case ProductDeletedEvent deletedEvent:
                     product = await context.Products.FindAsync(deletedEvent.Id);
@@ -79,6 +81,7 @@ namespace EventSourcing.API.BackgroundServices
                     {
                         context.Products.Remove(product);
                     }
+
                     break;
             }
 

@@ -8,6 +8,7 @@ namespace EventSourcing.API.Models
     public class ChangeProductPriceRequest
     {
         public Guid Id { get; set; }
+
         public decimal Price { get; set; }
     }
 }

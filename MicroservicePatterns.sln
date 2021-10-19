@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A047E18D-1051-40DB-8F67-B43E490430C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.API", "src\EventSourcing.API\EventSourcing.API.csproj", "{7A06043F-0C06-4294-A1B3-4EDA9730E73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSourcing.API", "src\EventSourcing.API\EventSourcing.API.csproj", "{7A06043F-0C06-4294-A1B3-4EDA9730E73D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventSourcing.Shared", "src\EventSourcing.Shared\EventSourcing.Shared.csproj", "{5256F786-6A03-420D-ADFF-EC5137E6584A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventSourcing.Shared", "src\EventSourcing.Shared\EventSourcing.Shared.csproj", "{5256F786-6A03-420D-ADFF-EC5137E6584A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
