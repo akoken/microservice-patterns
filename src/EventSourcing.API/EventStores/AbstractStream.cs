@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -26,12 +25,12 @@ namespace EventSourcing.API.EventStores
 
         public async Task SaveAsync()
         {
-            var newEvents = Events.Select(x => new EventData(
+            var newEvents = Events.ConvertAll(x => new EventData(
                 Guid.NewGuid(),
                 x.GetType().Name,
                 true,
                 Encoding.UTF8.GetBytes(JsonSerializer.Serialize(x, inputType: x.GetType())),
-                Encoding.UTF8.GetBytes(x.GetType().FullName))).ToList();
+                Encoding.UTF8.GetBytes(x.GetType().FullName)));
 
             await _eventStoreConnection.AppendToStreamAsync(_streamName, ExpectedVersion.Any, newEvents);
             Events.Clear();

@@ -42,8 +42,8 @@ namespace EventSourcing.API.BackgroundServices
             var eventData = Encoding.UTF8.GetString(arg2.Event.Data);
             var @event = JsonSerializer.Deserialize(eventData, type);
 
-            using var scope = _serviceProvider.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            using IServiceScope scope = _serviceProvider.CreateScope();
+            AppDbContext context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
             Product product = null;
             switch (@event)
